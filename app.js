@@ -1,5 +1,6 @@
 import express from "express";
 import 'dotenv/config'
+import mongoose from "mongoose";
 
 const app = express()
 
@@ -11,4 +12,5 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
     console.log(`server is running on http://localhost:${port}`)
+    
 })
