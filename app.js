@@ -2,7 +2,7 @@ import express, { json } from "express";
 import 'dotenv/config'
 import mongoose from "mongoose";
 import cors from 'cors'
-import authRouter from "./routes/auth.router";
+import authRouter from "./routes/auth.router.js";
 
 const app = express()
 
