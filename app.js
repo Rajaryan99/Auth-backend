@@ -10,7 +10,24 @@ app.get("/", (req, res) => {
     res.send("Hello World!!!")
 })
 
-app.listen(port, () => {
+
+
+const connectDB = async () => {
+    try {
+
+        const res = await mongoose.connect(process.env.MONGODB_URL)
+        console.log("DB connected successfully!!")
+
+        app.listen(port, () => {
     console.log(`server is running on http://localhost:${port}`)
     
 })
+        
+    } catch (error) {
+        console.error("Error in connection DB", error)
+    }
+}
+
+
+
+connectDB();
