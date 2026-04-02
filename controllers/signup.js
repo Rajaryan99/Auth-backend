@@ -2,6 +2,7 @@ import user from '../models/user.model.js'
 import status from 'status'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import 'dotenv/config'
 
 export const signup = async (req, res) => {
 
@@ -39,7 +40,7 @@ export const signup = async (req, res) => {
 
       const token = jwt.sign(
         {
-        id: user._id
+        id: newUser._id
       },
       process.env.JWT_SECRET, 
       {
@@ -80,6 +81,19 @@ export const getMe = async (req, res) => {
         })
     }
 
-    c
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+    const userData  = await user.findById(decoded.id);
+    
+    if(userData){
+        return res.status(200).json({
+            message: "User fetched successfully",
+            users: {
+                username: userData.username,
+                email: userData.email
+            }
+
+        })
+    }
     
 }
