@@ -88,7 +88,7 @@ export const getMe = async (req, res) => {
     if(userData){
         return res.status(200).json({
             message: "User fetched successfully",
-            users: {
+            user: {
                 username: userData.username,
                 email: userData.email
             }
